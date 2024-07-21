@@ -6,7 +6,7 @@
 
 ### 必需模块
 
-脚本依赖于 `keyboard` 和 `threading` 模块。你可以使用以下命令安装 `keyboard` 模块：
+脚本依赖于 `keyboard` 模块。你可以使用以下命令安装 `keyboard` 模块：
 
 ```sh
 pip install keyboard
@@ -20,7 +20,6 @@ pip install keyboard
 4. 输入python + 脚本路径 如 `python "C:\xxx\start.py"`
 5. 在贪吃蛇游戏中，按下 `F10` 键开始自动刷分。
 6. 按下 `F11` 键暂停刷分。
-7. 按下 `F12` 键停止脚本运行。
 
 ## 注意事项
 
