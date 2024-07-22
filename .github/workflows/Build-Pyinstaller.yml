@@ -1,6 +1,6 @@
 # GitHub Actions 工作流，用于构建 zzz-snake 可执行文件
 
-name: Build zzz-snake
+name: 构建 zzz-snake
 
 # 定义触发工作流的条件：在 main 分支上推送代码或创建拉取请求时触发
 on:
@@ -13,53 +13,53 @@ on:
 
 jobs:
   build:
-    # 指定运行环境为最新的 Ubuntu 操作系统
-    runs-on: ubuntu-latest
+    # 指定运行环境
+    runs-on: windows-latest
 
     steps:
       # 第一步：检出代码仓库的最新版本
-      - name: Checkout repository
+      - name: 检出代码库
         uses: actions/checkout@v4
 
       # 第二步：设置 Python 环境，指定 Python 版本
-      - name: Set up Python
-        uses: actions/setup-python@v4
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11.5'
+          python-version: '3.11'
 
       # 第三步：创建并激活虚拟环境，安装必要的 Python 包，包括 PyInstaller 和项目依赖
-      - name: Install dependencies
+      - name: 安装依赖
         run: |
           python -m venv venv
-          source venv/bin/activate
+          venv\Scripts\activate
           python -m pip install --upgrade pip
           pip install pyinstaller
           pip install -r requirements.txt
 
       # 第四步：创建临时构建目录和输出目录
-      - name: Create directories
+      - name: 创建目录
         run: |
-          mkdir -p temp_build
-          mkdir -p output
+          mkdir temp_build
+          mkdir output
 
       # 第五步：将 Python 脚本复制到临时构建目录
-      - name: Copy Python script
-        run: cp start.py temp_build/
+      - name: 复制 Python 脚本
+        run: copy start.py temp_build\
 
       # 第六步：使用 PyInstaller 编译 Python 脚本为可执行文件
-      - name: Build executable
+      - name: 编译可执行文件
         run: |
-          source venv/bin/activate
+          venv\Scripts\activate
           cd temp_build
           pyinstaller --clean --onefile --name zzz-snake.exe start.py
 
       # 第七步：将生成的可执行文件移动到输出目录
-      - name: Move executable to output directory
-        run: mv temp_build/dist/zzz-snake.exe output/
+      - name: 移动可执行文件到输出目录
+        run: move temp_build\dist\zzz-snake.exe output\
 
       # 第八步：上传生成的可执行文件，以便在 GitHub Actions 界面下载
-      - name: Upload artifact
+      - name: 上传可执行文件
         uses: actions/upload-artifact@v4
         with:
           name: zzz-snake-exe
-          path: output/zzz-snake.exe
+          path: output\zzz-snake.exe
