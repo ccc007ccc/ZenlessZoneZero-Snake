@@ -51,7 +51,7 @@ jobs:
         run: |
           venv\Scripts\activate
           cd temp_build
-          pyinstaller --clean --onefile --name zzz-snake.exe start.py
+          pyinstaller -D --uac-admin --clean --onefile --name zzz-snake.exe start.py
 
       # 第七步：将生成的可执行文件移动到输出目录
       - name: 移动可执行文件到输出目录
