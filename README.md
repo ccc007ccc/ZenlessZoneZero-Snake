@@ -4,10 +4,10 @@
 
 ## 使用方法
 
-1. [使用打包好的exe文件(应该没有python环境也能用))](https://github.com/1492949083/ZenlessZoneZero-Snake?tab=readme-ov-file#%E4%BD%BF%E7%94%A8%E6%89%93%E5%8C%85%E5%A5%BD%E7%9A%84-exe-%E6%96%87%E4%BB%B6)
-2. [使用源代码](https://github.com/1492949083/ZenlessZoneZero-Snake/tree/main?tab=readme-ov-file#%E4%BD%BF%E7%94%A8%E6%BA%90%E4%BB%A3%E7%A0%81)
+1. [使用打包好的exe文件(应该没有python环境也能用))](#使用打包好的exe文件)
+2. [使用源代码](#使用源代码)
 
-### 使用打包好的 exe 文件
+### 使用打包好的exe文件
 
 1. 从[Releases](https://github.com/1492949083/ZenlessZoneZero-Snake/releases/)下载打包好的 exe 文件。
 2. 从蛇对蛇失败界面[此处](doc/img/1.png)截图取名 `image.png` 和 exe 文件放一起![s](doc/img/2.png)
