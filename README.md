@@ -6,7 +6,7 @@
 
 ### 使用打包好的 exe 文件
 
-1. 下载打包好的 exe 文件。
+1. 从[Releases](https://github.com/1492949083/ZenlessZoneZero-Snake/releases/)下载打包好的 exe 文件。
 2. 从蛇对蛇失败界面[此处](doc/img/1.png)截图取名 `image.png` 和 exe 文件放一起![s](doc/img/2.png)
 3. 双击运行 exe 文件。
 4. 在蛇对蛇游戏中，按下 `F10` 键开始自动刷分（脚本会自动将蛇移动到角落）。
