@@ -1,0 +1,62 @@
+# GitHub Actions 工作流，用于构建 zzz-snake 可执行文件
+
+name: Build zzz-snake
+
+# 定义触发工作流的条件：在 main 分支上推送代码或创建拉取请求时触发
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    # 指定运行环境为最新的 Ubuntu 操作系统
+    runs-on: ubuntu-latest
+
+    steps:
+      # 第一步：检出代码仓库的最新版本
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      # 第二步：设置 Python 环境，指定 Python 版本
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.5'
+
+      # 第三步：安装必要的 Python 包，包括 PyInstaller 和项目依赖
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pyinstaller
+          pip install -r requirements.txt
+
+      # 第四步：创建临时构建目录和输出目录
+      - name: Create directories
+        run: |
+          mkdir -p temp_build
+          mkdir -p output
+
+      # 第五步：将 Python 脚本复制到临时构建目录
+      - name: Copy Python script
+        run: cp start.py temp_build/
+
+      # 第六步：使用 PyInstaller 编译 Python 脚本为可执行文件
+      - name: Build executable
+        run: |
+          cd temp_build
+          pyinstaller -D --uac-admin --onefile --name zzz-snake.exe start.py
+
+      # 第七步：将生成的可执行文件移动到输出目录
+      - name: Move executable to output directory
+        run: mv temp_build/dist/zzz-snake.exe output/
+
+      # 第八步：上传生成的可执行文件，以便在 GitHub Actions 界面下载
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: zzz-snake-exe
+          path: output/zzz-snake.exe
