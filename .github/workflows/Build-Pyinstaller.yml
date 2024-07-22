@@ -19,7 +19,7 @@ jobs:
     steps:
       # 第一步：检出代码仓库的最新版本
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       # 第二步：设置 Python 环境，指定 Python 版本
       - name: Set up Python
@@ -27,9 +27,11 @@ jobs:
         with:
           python-version: '3.11.5'
 
-      # 第三步：安装必要的 Python 包，包括 PyInstaller 和项目依赖
+      # 第三步：创建并激活虚拟环境，安装必要的 Python 包，包括 PyInstaller 和项目依赖
       - name: Install dependencies
         run: |
+          python -m venv venv
+          source venv/bin/activate
           python -m pip install --upgrade pip
           pip install pyinstaller
           pip install -r requirements.txt
@@ -47,8 +49,9 @@ jobs:
       # 第六步：使用 PyInstaller 编译 Python 脚本为可执行文件
       - name: Build executable
         run: |
+          source venv/bin/activate
           cd temp_build
-          pyinstaller -D --uac-admin --onefile --name zzz-snake.exe start.py
+          pyinstaller --clean --onefile --name zzz-snake.exe start.py
 
       # 第七步：将生成的可执行文件移动到输出目录
       - name: Move executable to output directory
@@ -56,7 +59,7 @@ jobs:
 
       # 第八步：上传生成的可执行文件，以便在 GitHub Actions 界面下载
       - name: Upload artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: zzz-snake-exe
           path: output/zzz-snake.exe
