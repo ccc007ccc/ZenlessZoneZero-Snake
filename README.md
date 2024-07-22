@@ -1,15 +1,36 @@
 # 绝区零蛇对蛇全自动刷分脚本
 
-此Python脚本通过模拟键盘输入来自动控制蛇进行刷分。脚本会让蛇以原地转圈的方式移动并在失败后自动重新开始，从而实现全自动刷分(很难刷到千万分以上).
+通过模拟键盘输入来自动控制蛇进行刷分。让蛇以原地转圈的方式移动并在失败后自动重新开始，从而实现全自动刷分（很难刷到千万分以上）。
 
-## 安装方法
+## 使用方法
 
-1. 安装库`pip install keyboard pyautogui`
-2. 克隆存储库`git clone https://github.com/1492949083/ZenlessZoneZero-Snake.git`
-4. 运行`python start.py`
-5. 在蛇对蛇游戏中，按下 `F10` 键开始自动刷分(不用操控,脚本会自动将蛇移动到角落)。
-6. 按下 `F11` 键暂停刷分。
-7. Ctrl + C 退出
+### 使用打包好的 exe 文件
+
+1. 下载打包好的 exe 文件。
+2. 从蛇对蛇失败界面[此处](doc/img/1.png)截图取名 `image.png` 和 exe 文件放一起![s](doc/img/2.png)
+3. 双击运行 exe 文件。
+4. 在蛇对蛇游戏中，按下 `F10` 键开始自动刷分（脚本会自动将蛇移动到角落）。
+5. 按下 `F11` 键暂停刷分。
+6. 关闭窗口退出。
+
+### 使用源代码
+
+1. 安装所需库：
+   ```sh
+   pip install -r requirements.txt
+   ```
+2. 克隆存储库：
+   ```sh
+   git clone https://github.com/1492949083/ZenlessZoneZero-Snake.git
+   cd ZenlessZoneZero-Snake
+   ```
+3. 运行脚本：
+   ```sh
+   python start.py
+   ```
+4. 在蛇对蛇游戏中，按下 `F10` 键开始自动刷分（脚本会自动将蛇移动到角落）。
+5. 按下 `F11` 键暂停刷分。
+6. 按 `Ctrl + C` 退出。
 
 ## 注意事项
 
@@ -18,7 +39,8 @@
 
 ## 常见问题
 
-- 如果游戏失败后不会自动重新开始，请将游戏结束界面此处截图并替换/img/image.png文件。![image](doc/img/1.png)
+- 如果游戏失败后不会自动重新开始，请将游戏结束界面截图并替换 `image.png` 文件。
+  ![image](doc/img/1.png)
 
 ## 免责声明
 

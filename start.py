@@ -2,6 +2,7 @@ import keyboard
 import time
 import threading
 import pyautogui as pyg
+import os
 
 # 用于表示脚本是否应该继续运行
 continue_running = False
@@ -11,7 +12,6 @@ pag_running = False
 timer_thread = None
 timer_lock = threading.Lock()
 rounds = 0
-
 
 # 去左上角 
 def go_to_top_left():
@@ -89,29 +89,34 @@ def timer():
 def click_over_img():
     global rounds,continue_running
     height, width = pyg.size()
-    print(height, width)
+    # print(height, width)
     #左上角
     left_top_x = int(width/3)
     left_top_y = int(height/3)
     #右下角
     right_bottom_x = int(width - width/3)
     right_bottom_y = int(height - height/3)
-    print(left_top_x, left_top_y, right_bottom_x, right_bottom_y)
+    # print(left_top_x, left_top_y, right_bottom_x, right_bottom_y)
     
     while pag_running:
-        img = pyg.locateCenterOnScreen("./img/image.png", confidence=0.8, region=(left_top_x, left_top_y, right_bottom_x, right_bottom_y))
-        if img != None:
-            continue_running = False
-            pyg.click(img)
-            time.sleep(1.5)
-            go_to_top_left()
-            rounds += 1
-        elif rounds == 0:
-            # continue_running = True
-            go_to_top_left()
-            rounds = 1 
+        try:
+            img = pyg.locateCenterOnScreen("image.png", confidence=0.8, region=(left_top_x, left_top_y, right_bottom_x, right_bottom_y))
+            if img != None:
+                continue_running = False
+                pyg.click(img)
+                time.sleep(1.5)
+                go_to_top_left()
+                rounds += 1
+            elif rounds == 0:
+                # continue_running = True
+                go_to_top_left()
+                rounds = 1 
+        except pyg.ImageNotFoundException:
+            # print("图片未找到")
+            continue
+        finally:
+            time.sleep(1)
                 
-        time.sleep(1)
 
 # 当 F10 键被按下时，调用 start_script 函数
 keyboard.on_press_key("f10", start_script)
@@ -129,6 +134,10 @@ def click_loop():
 
 # 在一个新的线程中运行 click_loop 函数
 threading.Thread(target=click_loop, daemon=True).start()
+
+print("F10 键启动")
+print("F11 键暂停")
+print("Ctrl+C 键退出")
 
 # 运行程序
 keyboard.wait()
