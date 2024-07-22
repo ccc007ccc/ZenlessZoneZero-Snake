@@ -6,6 +6,7 @@ import pyautogui as pyg
 # 用于表示脚本是否应该继续运行
 fast = False
 continue_running = False
+pag_running = False
 timer_thread = None
 timer_lock = threading.Lock()
 rounds = 0
@@ -55,12 +56,13 @@ def rotate_snake():
         keyboard.release('w')
 
 def start_script(e):
-    global continue_running, timer_thread, fast
+    global continue_running, timer_thread, fast, pag_running
     print("脚本开始运行！")
     # keyboard.press("j")
     # fast = True
     # continue_running = True
     # 启动自动重开
+    pag_running = True
     threading.Thread(target=click_over_img, daemon=True).start()
 
     # # 启动计时线程
@@ -70,10 +72,11 @@ def start_script(e):
     #         timer_thread.start()
 
 def stop_script(e):
-    global continue_running
+    global continue_running, pag_running
     print("脚本暂停运行！")
     # keyboard.release("j")
     continue_running = False
+    pag_running = False
 
 def timer():
     global fast
@@ -94,7 +97,7 @@ def click_over_img():
     right_bottom_y = int(height - height/3)
     print(left_top_x, left_top_y, right_bottom_x, right_bottom_y)
     
-    while True:
+    while pag_running:
         img = pyg.locateCenterOnScreen("./img/image.png", confidence=0.8, region=(left_top_x, left_top_y, right_bottom_x, right_bottom_y))
         if img != None:
             continue_running = False
@@ -103,7 +106,8 @@ def click_over_img():
             go_to_top_left()
             rounds += 1
         elif rounds == 0:
-            continue_running = True
+            # continue_running = True
+            go_to_top_left()
             rounds = 1 
                 
         time.sleep(1)
