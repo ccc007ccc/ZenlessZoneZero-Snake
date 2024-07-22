@@ -4,15 +4,16 @@ import threading
 import pyautogui as pyg
 
 # 用于表示脚本是否应该继续运行
-fast = False
 continue_running = False
+# 极速模式
+fast = False
 pag_running = False
 timer_thread = None
 timer_lock = threading.Lock()
 rounds = 0
 
 
-#去左上角 
+# 去左上角 
 def go_to_top_left():
     global continue_running
     keyboard.press('a')
@@ -24,7 +25,7 @@ def go_to_top_left():
     keyboard.release('w')
     
     continue_running = True    
-# 控制蛇转圈刷分
+# 控制蛇转圈
 def rotate_snake():
     if fast: 
         keyboard.press('d')
