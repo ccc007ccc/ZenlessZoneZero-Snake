@@ -18,18 +18,18 @@
 
 ### 使用源代码
 
-1. 安装所需库：
-
-   ```sh
-   pip install -r requirements.txt
-   ```
-2. 克隆存储库：
+1. 克隆存储库：
 
    ```sh
    git clone https://github.com/ccc007ccc/ZenlessZoneZero-Snake.git
    cd ZenlessZoneZero-Snake
    ```
-3. 运行脚本：
+2. 安装所需库：
+
+   ```sh
+   pip install -r requirements.txt
+   ```
+3. 运行脚本(使用管理员终端)：
 
    ```sh
    python start.py
@@ -45,7 +45,8 @@
 
 ## 常见问题
 
-- 如果游戏失败后不会自动重新开始，请将游戏结束界面[此处](doc/img/1.png)截图并替换 `image.png` 文件。
+- 游戏失败后不会自动重新开始
+  请将游戏结束界面[此处](doc/img/1.png)截图并替换 `image.png` 文件。
 
 ## 免责声明
 
