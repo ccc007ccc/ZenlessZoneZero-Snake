@@ -62,6 +62,7 @@ def start_script(e):
     # keyboard.press("j")
     # fast = True
     # continue_running = True
+    go_to_top_left()
     # 启动自动重开
     pag_running = True
     threading.Thread(target=click_over_img, daemon=True).start()
@@ -92,10 +93,10 @@ def click_over_img():
     # print(height, width)
     #左上角
     left_top_x = int(width/3)
-    left_top_y = int(height/3)
+    left_top_y = int(height/5)
     #右下角
     right_bottom_x = int(width - width/3)
-    right_bottom_y = int(height - height/3)
+    right_bottom_y = int(height - height/5)
     # print(left_top_x, left_top_y, right_bottom_x, right_bottom_y)
     
     while pag_running:
@@ -104,6 +105,8 @@ def click_over_img():
             if img != None:
                 continue_running = False
                 pyg.click(img)
+                # 移动光标到左上角
+                pyg.moveTo(left_top_x, left_top_y)
                 time.sleep(1.5)
                 go_to_top_left()
                 rounds += 1
